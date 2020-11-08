@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+const io = require('socket.io-client');
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    console.log("test");
+    const socket = io("ws://127.0.0.1:4001");
+
+    // socket.on("welcome", (data) => {
+    //   console.log(data);
+    // });
+
+    return(
+        <h1>hi</h1>
+    )
 }
 
 export default App;
