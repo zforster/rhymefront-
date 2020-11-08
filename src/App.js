@@ -1,13 +1,12 @@
-const io = require('socket.io-client');
+import io from 'socket.io-client';
+const socket = io('http://localhost:4000', {"transports" : ["websocket"]});
 
 function App() {
 
     console.log("test");
-    const socket = io("ws://127.0.0.1:4001");
-
-    // socket.on("welcome", (data) => {
-    //   console.log(data);
-    // });
+    socket.on("welcome", (data) => {
+        console.log(data);
+    });
 
     return(
         <h1>hi</h1>
