@@ -6,11 +6,12 @@ import io from 'socket.io-client';
 class Site extends Component {
     constructor(){
         super();
-        this.state = {messages: [], currentMsg: "", username: `zak${Math.random()}`};
+        this.state = {room: "testRoom", messages: [], currentMsg: "", username: `zak${Math.random()}`};
         this.socket = io('http://localhost:4000/chat', {"transports" : ["websocket"]});
     }
 
     componentDidMount() {
+        this.socket.emit("joinRoom", this.state.room);
         this.socket.on("broadcastMsg", (data) => this.handleNewMsg(data)); // add listener
     }
 
@@ -26,7 +27,7 @@ class Site extends Component {
 
     sendMsg(){
         this.setState({currentMsg: ""});
-        this.socket.emit("sendMsg", {username: this.state.username, msg: this.state.currentMsg})
+        this.socket.emit("sendMsg", {username: this.state.username, msg: this.state.currentMsg, room: this.state.room})
     }
 
     render() {
