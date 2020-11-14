@@ -14,11 +14,11 @@ function generateUsername(username, setUsername){
     return username
 }
 
-export function CreateRoomButton(){
+export function JoinRoomButton(props){
     const username = useStore(state => state.username);
     const setUsername = useStore(state => state.setUsername);
 
-    const roomName = Math.random().toString(36).substring(2);
+    const roomName = props.roomName ? props.roomName : Math.random().toString(36).substring(2);
     const setRoomName = useStore(state => state.setRoomName);
 
 
@@ -30,7 +30,7 @@ export function CreateRoomButton(){
                 joinRoom(roomName, name);
             }}
                 variant="contained" color="primary">
-            Create Private Game
+            {props.message}
         </Button>
     )
 }
