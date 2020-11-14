@@ -1,10 +1,10 @@
 import React from 'react';
-import Site from './test.js';
+import { Home } from './pages/home';
+
 
 function App() {
-
-    return(
-        <Site/>
+    return (
+        <Home/>
     )
 }
 
