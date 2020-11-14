@@ -1,11 +1,11 @@
 import React from 'react';
 import { useStore } from '../state/store';
 import { UsernameInputField } from '../components/inputs';
-import { CreateRoomButton } from '../components/buttons';
+import { JoinRoomButton } from '../components/buttons';
 
 
 export function Home() {
-    document.title = "Rhyme With Friends | Home";
+    document.title = "Home | Rhyme With Friends";
 
     const username = useStore(state => state.username);
     const roomName = useStore(state => state.roomName);
@@ -14,7 +14,7 @@ export function Home() {
         return (
             <div>
                 <UsernameInputField/>
-                <CreateRoomButton/>
+                <JoinRoomButton message={"CREATE PRIVATE GAME"}/>
             </div>
         )
     }
