@@ -1,14 +1,13 @@
 import React from 'react';
 import { Home } from './pages/home';
-import { JoinGame } from './pages/joinGame';
 import {Route, BrowserRouter as Router} from "react-router-dom";
 
 
 function App() {
     return (
         <Router>
-            <Route exact path="/:room" render={(props) => <JoinGame room={props.match.params.room}/>}/>
-            <Route exact path="/" component={Home}/>
+            <Route exact path="/:room" render={(props) => <Home room={props.match.params.room} btnText={"JOIN GAME"} title={"Join Game"}/>}/>
+            <Route exact path="/" render={() => <Home room={null} btnText={"CREATE PRIVATE GAME"} title={"Home"}/>}/>
         </Router>
     )
 }
