@@ -3,6 +3,7 @@ import { useStore } from "../state/store";
 import { Title } from "../components/title";
 import { GridContainer } from "../components/grid";
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 export function Lobby() {
     document.title = `Lobby | Rhyme With Friends`;
@@ -22,9 +23,9 @@ export function Lobby() {
                     <h1>Your Username: {username}</h1>
                     <h1>Current Players: {players}</h1>
                     <h1>Your Room: {roomName}</h1>
+                    <Button variant="contained" color="primary">Start Game!</Button>
                     <TextField
-                        id="standard-full-width"
-                        label="Label"
+                        label="Invite Your Friends"
                         style={{ margin: 8 }}
                         value={`http://localhost:3000/${roomName}`}
                         fullWidth
