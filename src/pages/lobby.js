@@ -26,7 +26,6 @@ export function Lobby() {
                     <Button variant="contained" color="primary">Start Game!</Button>
                     <TextField
                         label="Invite Your Friends"
-                        style={{ margin: 8 }}
                         value={`http://localhost:3000/${roomName}`}
                         fullWidth
                         margin="normal"
