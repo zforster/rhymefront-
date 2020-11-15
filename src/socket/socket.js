@@ -19,10 +19,6 @@ export const userLeftRoom = (data) => {
     });
 };
 
-export const leaveRoom = (room) => {
-    socket.emit('leaveRoom', {room: room});
-};
-
 export const disconnectSocket = () => {
     socket.disconnect();
 };
