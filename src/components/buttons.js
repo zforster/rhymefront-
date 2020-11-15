@@ -21,16 +21,17 @@ export function JoinRoomButton(props){
     const roomName = props.roomName ? props.roomName : Math.random().toString(36).substring(2);
     const setRoomName = useStore(state => state.setRoomName);
 
-
     return (
-        <Button
-            onClick={() => {
-                const name = generateUsername(username, setUsername);
-                setRoomName(roomName);
-                joinRoom(roomName, name);
-            }}
-                variant="contained" color="primary">
-            {props.message}
-        </Button>
+        <div style={props.style ? props.style : null}>
+            <Button
+                onClick={() => {
+                    const name = generateUsername(username, setUsername);
+                    setRoomName(roomName);
+                    joinRoom(roomName, name);
+                }}
+                    variant="contained" color="primary">
+                {props.message}
+            </Button>
+        </div>
     )
 }
