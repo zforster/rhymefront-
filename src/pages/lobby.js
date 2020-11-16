@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStore } from "../state/store";
-import { Title } from "../components/title";
+import { Title, PlayersInLobbyTitle, PlayerInLobby } from "../components/fonts";
 import { GridContainer } from "../components/grid";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -8,30 +8,38 @@ import Button from '@material-ui/core/Button';
 export function Lobby() {
     document.title = `Lobby | Rhyme With Friends`;
 
+    const [showCopied, setShowCopied] = useState(false);
     const username = useStore(state => state.username);
     const roomName = useStore(state => state.roomName);
 
     const currentPlayers = useStore(state => state.currentPlayers);
 
-    const players = currentPlayers.map((data) => {return <li key={Math.random()}>{data.username}</li>});
+    const players = currentPlayers.map((data) => {return <PlayerInLobby text={data.username}/>});
+
+    const styleBackground = showCopied ? "#f5f5f5" : "white";
+    const style = { textAlign: 'center', cursor: "pointer", backgroundColor: styleBackground};
 
     return (
         <div style={{display: "flex", flexDirection: "column", flex: 1, backgroundColor: "#f5f5f5"}}>
             <Title/>
             <GridContainer>
                 <div>
-                    <h1>Your Username: {username}</h1>
-                    <h1>Current Players: {players}</h1>
-                    <h1>Your Room: {roomName}</h1>
-                    <Button variant="contained" color="primary">Start Game!</Button>
+                    <PlayersInLobbyTitle text={"Players"}/>
+                    {players}
+                    <Button style={{marginBottom: "3rem", marginTop: "2.6rem"}} variant="contained" color="primary">Start Game</Button>
                     <TextField
-                        label="Invite Your Friends"
+                        onClick={() => {
+                            navigator.clipboard.writeText(`http://localhost:3000/${roomName}`);
+                            setShowCopied(true);
+                            setTimeout(() => {
+                                setShowCopied(false);
+                            }, 100);
+                        }}
+                        label="Link To Invite Your Friends"
                         value={`http://localhost:3000/${roomName}`}
                         fullWidth
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
+                        variant="outlined"
+                        inputProps={{shrink: true, readOnly: true, style: style}}
                     />
                 </div>
             </GridContainer>
