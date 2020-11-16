@@ -13,13 +13,19 @@ export function Home(props) {
 
     const addToCurrentPlayers = useStore(state => state.addToCurrentPlayers);
     const removeFromCurrentPlayers = useStore(state => state.removeFromCurrentPlayers);
+    const joinedRoomSound = new Audio("/joinroom.mp3");
+    const leftRoomSound = new Audio("/leaveroom.mp3");
 
     useEffect(() => {
         userJoinedRoom((data) => {
             addToCurrentPlayers(data);
+            if(joinedRoomSound.currentTime === 0){
+                joinedRoomSound.play();
+            }
         });
         userLeftRoom((data) => {
             removeFromCurrentPlayers(data);
+            leftRoomSound.play();
         });
         return () => {
             disconnectSocket();
