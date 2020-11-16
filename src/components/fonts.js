@@ -8,22 +8,51 @@ const useStyles = makeStyles({
         textAlign: "center",
         paddingTop: "5rem"
     },
-    typography: {
+    title: {
         fontFamily: 'Space Grotesk',
         fontSize: 75,
         fontWeight: 700,
         color: "#0061ab"
+    },
+    lobbyTitle: {
+        fontFamily: 'Space Grotesk',
+        fontSize: 40,
+        fontWeight: 400,
+        color: "#044891"
+    },
+    playerInLobby: {
+        fontFamily: 'Space Grotesk',
+        fontSize: 22,
+        fontWeight: 300,
+        color: "#000000"
     }
 });
 
 export function Title() {
     const classes = useStyles();
-
     return (
         <div className={classes.root}>
-            <Typography className={classes.typography} variant="h4" gutterBottom>
+            <Typography className={classes.title} variant="h4" gutterBottom>
                 Rhyme With Friends
             </Typography>
         </div>
+    );
+}
+
+export function PlayersInLobbyTitle(props){
+    const classes = useStyles();
+    return (
+        <Typography className={classes.lobbyTitle} gutterBottom>
+            {props.text ? props.text : ""}
+        </Typography>
+    );
+}
+
+export function PlayerInLobby(props){
+    const classes = useStyles();
+    return (
+        <Typography className={classes.playerInLobby}>
+            {props.text ? props.text : ""}
+        </Typography>
     );
 }
