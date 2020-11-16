@@ -1,6 +1,6 @@
 import React, { useEffect }  from 'react';
 import { useStore } from "../state/store";
-import { Title } from "../components/title";
+import { Title } from "../components/fonts";
 import { Lobby } from "./lobby";
 import { GridContainer } from "../components/grid";
 import { userJoinedRoom, disconnectSocket, userLeftRoom } from "../socket/socket";
