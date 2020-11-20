@@ -13,24 +13,26 @@ export function Home(props) {
 
     const addToCurrentPlayers = useStore(state => state.addToCurrentPlayers);
     const removeFromCurrentPlayers = useStore(state => state.removeFromCurrentPlayers);
-    const joinedRoomSound = new Audio("/joinroom.mp3");
-    const leftRoomSound = new Audio("/leaveroom.mp3");
+    const setId = useStore(state => state.setId);
+    const setHostId = useStore(state => state.setHostId);
 
     useEffect(() => {
         userJoinedRoom((data) => {
             addToCurrentPlayers(data);
-            if(joinedRoomSound.currentTime === 0){
-                joinedRoomSound.play();
+            if(data["isYou"]){
+                setId(data["id"])
+            }
+            if(data["host"]){
+                setHostId(data["id"])
             }
         });
         userLeftRoom((data) => {
             removeFromCurrentPlayers(data);
-            leftRoomSound.play();
         });
         return () => {
             disconnectSocket();
         }
-    }, [addToCurrentPlayers, removeFromCurrentPlayers]);
+    }, [addToCurrentPlayers, removeFromCurrentPlayers, setId, setHostId]);
 
     if(roomName === "") {
         document.title = `${props.title} | Rhyme With Friends`;
