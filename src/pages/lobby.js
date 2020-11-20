@@ -7,6 +7,9 @@ import Button from '@material-ui/core/Button';
 
 
 function disableButton(id, hostId){
+    if(id === "" || hostId === ""){
+        return true;
+    }
     return !(id === hostId);
 }
 
