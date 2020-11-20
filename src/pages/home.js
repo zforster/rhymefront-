@@ -27,6 +27,7 @@ export function Home(props) {
             }
         });
         userLeftRoom((data) => {
+            setHostId(data["host"]);
             removeFromCurrentPlayers(data);
         });
         return () => {
